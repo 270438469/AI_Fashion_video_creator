@@ -1,0 +1,29 @@
+.provider-form {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .42);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.provider-form-head { display:flex; justify-content:space-between; align-items:start; margin-bottom:20px; }
+.provider-form-head h3 { font:32px Georgia,"Songti SC",serif; margin:8px 0 0; }
+.independent-note { margin:-8px 0 18px; }
+.capability-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.capability-card { border:1px solid var(--line); background:rgba(250,247,241,.72); padding:18px; min-width:0; }
+.capability-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:16px; }
+.capability-head > div { display:flex; align-items:baseline; gap:9px; }
+.capability-head small { color:var(--accent); font:11px Inter,sans-serif; letter-spacing:.12em; }
+.capability-head h4 { margin:0; font:21px Georgia,"Songti SC",serif; }
+.capability-card .badge { flex:0 0 auto; font-size:10px; }
+.provider-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 22px; }
+.provider-fields.single { grid-template-columns:1fr; gap:13px; }
+.provider-fields label { display:flex; flex-direction:column; gap:8px; color:var(--muted); font-size:11px; letter-spacing:.06em; }
+.provider-fields input,.provider-fields select { width:100%; border:1px solid var(--line); background:#faf7f1; color:var(--ink); padding:13px 12px; font:13px Inter,"Microsoft YaHei",sans-serif; }
+.provider-fields input[readonly] { background:#e9e3da; color:var(--muted); }
+.provider-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:18px; }
+.primary.compact { width:auto; min-width:190px; padding:12px 16px; }
+.provider-form .badge { align-self:center; }
+.provider-form .badge.ready { background:var(--ok); }
+.capability-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
+.capability-actions button { width:100%; }
+@media(max-width:1100px) { .capability-grid { grid-template-columns:1fr; } }
+@media(max-width:850px) { .provider-fields { grid-template-columns:1fr; } }

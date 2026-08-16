@@ -1,0 +1,6 @@
+{
+  "weights": {"style": 0.35, "occasion": 0.25, "color": 0.15, "season": 0.15, "ecommerce": 0.10},
+  "fallback_scene": "SC01",
+  "minimum_confidence": 0.65
+}
+

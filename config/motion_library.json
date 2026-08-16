@@ -1,0 +1,13 @@
+[
+  {"id":"M01","name":"front_walk","description":"Walk naturally two or three steps toward camera","risk":"low","camera":"tracking_backward","max_rotation_deg":10},
+  {"id":"M02","name":"soft_45_turn","description":"Make a restrained turn no greater than 45 degrees","risk":"low","camera":"gentle_static","max_rotation_deg":45},
+  {"id":"M03","name":"hair_touch","description":"Gently touch hair while keeping the garment visible","risk":"low","camera":"gentle_static","max_rotation_deg":20},
+  {"id":"M04","name":"coffee_hold","description":"Naturally hold a coffee without covering garment details","risk":"medium","camera":"gentle_static","max_rotation_deg":20,"allowed_scenes":["SC03","SC04"]},
+  {"id":"M05","name":"handbag_walk","description":"Walk with a simple handbag kept away from garment details","risk":"medium","camera":"tracking_backward","max_rotation_deg":15},
+  {"id":"M06","name":"adjust_sleeve","description":"Make a small sleeve-adjusting gesture","risk":"medium","camera":"gentle_static","max_rotation_deg":15},
+  {"id":"M07","name":"product_detail_pose","description":"Hold a clean pose that exposes visible garment details","risk":"low","camera":"slow_push_in","max_rotation_deg":10},
+  {"id":"M08","name":"long_dress_motion","description":"Create restrained natural motion in a long dress","risk":"low","camera":"tracking_backward","max_rotation_deg":20},
+  {"id":"M09","name":"sit_and_pose","description":"Sit naturally with an unobstructed garment view","risk":"medium","camera":"gentle_static","max_rotation_deg":25},
+  {"id":"M10","name":"hero_still","description":"Hold a stable ecommerce hero pose","risk":"low","camera":"slow_push_in","max_rotation_deg":45}
+]
+

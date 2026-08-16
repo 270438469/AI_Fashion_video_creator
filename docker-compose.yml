@@ -1,0 +1,56 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app:ro
+      - ./tests:/app/tests:ro
+      - ./workspace:/app/workspace
+      - ./characters:/app/characters
+      - ./config:/app/config:ro
+      - ./prompts:/app/prompts:ro
+    environment:
+      APP_ENV: local
+      HOST: 0.0.0.0
+      WORKSPACE_DIR: /app/workspace
+      CHARACTER_DIR: /app/characters
+      PROVIDER_MODE: ${PROVIDER_MODE:-mock}
+      VISION_PROVIDER: ${VISION_PROVIDER:-mock}
+      IMAGE_PROVIDER: ${IMAGE_PROVIDER:-mock}
+      VIDEO_PROVIDER: ${VIDEO_PROVIDER:-mock}
+      COMPOSER_PROVIDER: ${COMPOSER_PROVIDER:-ffmpeg}
+      FFMPEG_PATH: ffmpeg
+      FFPROBE_PATH: ffprobe
+      MAX_CONCURRENT_RUNS: ${MAX_CONCURRENT_RUNS:-1}
+      MAX_CONCURRENT_IMAGE_TASKS: ${MAX_CONCURRENT_IMAGE_TASKS:-2}
+      MAX_CONCURRENT_VIDEO_TASKS: ${MAX_CONCURRENT_VIDEO_TASKS:-1}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_IMAGE_MODEL: ${OPENAI_IMAGE_MODEL:-gpt-image-2}
+      OPENAI_VISION_MODEL: ${OPENAI_VISION_MODEL:-gpt-5-mini}
+      ALLOW_MOCK_GENERATION: ${ALLOW_MOCK_GENERATION:-false}
+      RUNWAYML_API_SECRET: ${RUNWAYML_API_SECRET:-${RUNWAY_API_KEY:-}}
+      RUNWAY_VIDEO_MODEL: ${RUNWAY_VIDEO_MODEL:-seedance2}
+      RUNWAY_TIMEOUT_SECONDS: ${RUNWAY_TIMEOUT_SECONDS:-900}
+      RELAY_ID: ${RELAY_ID:-kuaipao}
+      RELAY_VIDEO_MODEL: ${RELAY_VIDEO_MODEL:-doubao-seedance-2.0-mini-720p}
+      RELAY_VIDEO_TIMEOUT_SECONDS: ${RELAY_VIDEO_TIMEOUT_SECONDS:-900}
+      RELAY_VIDEO_POLL_INTERVAL_SECONDS: ${RELAY_VIDEO_POLL_INTERVAL_SECONDS:-5}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      backend:
+        condition: service_healthy

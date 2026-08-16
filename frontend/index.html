@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Fashion Video Director</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/theme-override.css" />
+  <link rel="stylesheet" href="/provider-settings.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header>
+    <a class="brand" href="#generate"><span class="brand-mark">F</span><span>AI Fashion<br><small>VIDEO DIRECTOR</small></span></a>
+    <nav>
+      <button data-view="generate" class="nav active">创作</button>
+      <button data-view="runs" class="nav">任务</button>
+      <button data-view="settings" class="nav">设置</button>
+    </nav>
+    <div id="systemPill" class="system-pill"><i></i> 检测系统中</div>
+  </header>
+
+  <main>
+    <section id="generateView" class="view active">
+      <div class="hero-copy">
+        <p id="heroEyebrow" class="eyebrow">LOCAL-FIRST · REAL THEME TRY-ON</p>
+        <h1>一张商品图，<br><em>导演一支时装片。</em></h1>
+        <p>人物参考锁定身份，上传图定义衣服与视觉主题，先完成真实换装关键帧，再编排为 18 秒竖屏成片。</p>
+      </div>
+      <div class="studio-grid">
+        <form id="uploadForm" class="upload-card">
+          <label id="dropZone" class="drop-zone">
+            <input id="productImage" name="product_image" type="file" accept="image/jpeg,image/png,image/webp" required />
+            <img id="preview" alt="商品预览" />
+            <div id="dropPrompt" class="drop-prompt">
+              <span class="upload-icon">↗</span>
+              <strong>放入一张衣服商品图</strong>
+              <small>点击选择或拖拽 · JPG / PNG / WEBP</small>
+            </div>
+          </label>
+          <div class="upload-meta"><span>人物</span><strong>ASIAN GIRL 001</strong><span>画幅</span><strong>9:16 · 18S</strong></div>
+          <button id="generateButton" class="primary" type="submit" disabled><span id="generateButtonLabel">检查真实生成配置…</span><b>→</b></button>
+          <p id="generationNotice" class="generation-notice">Mock 不会再输出伪装成换装结果的粘贴图。</p>
+          <p id="formError" class="error"></p>
+        </form>
+        <aside class="pipeline-card">
+          <div class="card-title"><span>编排进度</span><b id="progressValue">0%</b></div>
+          <div class="progress-track"><i id="progressBar"></i></div>
+          <ol id="pipelineSteps">
+            <li data-min="5"><i>01</i><span>商品识别<small>Visible facts only</small></span><b>○</b></li>
+            <li data-min="15"><i>02</i><span>场景路由<small>12 configured locations</small></span><b>○</b></li>
+            <li data-min="23"><i>03</i><span>动作与分镜<small>Single-front safe route</small></span><b>○</b></li>
+            <li data-min="45"><i>04</i><span>真实换装与图片 QA<small>identity + outfit/theme references</small></span><b>○</b></li>
+            <li data-min="75"><i>05</i><span>视频与时间 QA<small>18-second reviewed sequence</small></span><b>○</b></li>
+            <li data-min="96"><i>06</i><span>成片合成<small>H.264 · 360 × 640</small></span><b>○</b></li>
+          </ol>
+          <p id="currentStep" class="current-step">等待新任务</p>
+        </aside>
+      </div>
+      <div id="finalPanel" class="final-panel hidden"></div>
+    </section>
+
+    <section id="runsView" class="view">
+      <div class="section-head"><div><p class="eyebrow">LOCAL WORKSPACE</p><h2>任务与产物</h2></div><button id="refreshRuns" class="secondary">刷新</button></div>
+      <div class="runs-layout"><div id="runList" class="run-list"></div><div id="runDetail" class="run-detail empty">选择一个任务查看完整调试产物</div></div>
+    </section>
+
+    <section id="settingsView" class="view">
+      <div class="section-head"><div><p class="eyebrow">LOCAL CONFIGURATION</p><h2>系统与设置</h2></div></div>
+      <div id="systemGrid" class="status-grid"></div>
+      <form id="providerForm" class="provider-form">
+        <div class="provider-form-head">
+          <div><p class="eyebrow">INDEPENDENT MODEL GATEWAYS</p><h3>三个独立 API</h3></div>
+          <span id="allApiKeyBadge" class="badge">尚未完整配置</span>
+        </div>
+        <p class="settings-note independent-note">每项分别选择服务商、模型和 API Key。三个 Key 独立加密、独立删除、运行时互不复用。</p>
+        <div class="capability-grid">
+          <article class="capability-card" data-capability="vision">
+            <div class="capability-head"><div><small>01</small><h4>视觉分析 API</h4></div><span id="visionApiKeyBadge" class="badge">未配置</span></div>
+            <div class="provider-fields single">
+              <label><span>服务商</span><select id="visionProvider" required></select></label>
+              <label><span>API 路由（后台预置）</span><input id="visionBaseUrl" type="text" readonly /></label>
+              <label><span>视觉分析模型</span><select id="visionModel" required></select></label>
+              <label><span>视觉分析 API Key</span><input id="visionApiKey" type="password" autocomplete="new-password" placeholder="留空则保留该 API 已保存的 Key" /></label>
+            </div>
+            <div class="capability-actions"><button class="secondary test-capability-key" type="button" data-capability="vision">测试视觉 API</button><button class="secondary danger delete-capability-key" type="button" data-capability="vision">删除视觉 Key</button></div>
+          </article>
+          <article class="capability-card" data-capability="image">
+            <div class="capability-head"><div><small>02</small><h4>换装图片 API</h4></div><span id="imageApiKeyBadge" class="badge">未配置</span></div>
+            <div class="provider-fields single">
+              <label><span>服务商</span><select id="imageProvider" required></select></label>
+              <label><span>API 路由（后台预置）</span><input id="imageBaseUrl" type="text" readonly /></label>
+              <label><span>换装图片模型</span><select id="imageModel" required></select></label>
+              <label><span>换装图片 API Key</span><input id="imageApiKey" type="password" autocomplete="new-password" placeholder="留空则保留该 API 已保存的 Key" /></label>
+            </div>
+            <div class="capability-actions"><button class="secondary test-capability-key" type="button" data-capability="image">测试换装 API</button><button class="secondary danger delete-capability-key" type="button" data-capability="image">删除换装 Key</button></div>
+          </article>
+          <article class="capability-card" data-capability="video">
+            <div class="capability-head"><div><small>03</small><h4>视频生成 API</h4></div><span id="videoApiKeyBadge" class="badge">未配置</span></div>
+            <div class="provider-fields single">
+              <label><span>服务商</span><select id="videoProvider" required></select></label>
+              <label><span>API 路由（后台预置）</span><input id="videoBaseUrl" type="text" readonly /></label>
+              <label><span>视频生成模型</span><select id="videoModel" required></select></label>
+              <label><span>视频生成 API Key</span><input id="videoApiKey" type="password" autocomplete="new-password" placeholder="留空则保留该 API 已保存的 Key" /></label>
+            </div>
+            <div class="capability-actions"><button class="secondary test-capability-key" type="button" data-capability="video">测试视频 API</button><button class="secondary danger delete-capability-key" type="button" data-capability="video">删除视频 Key</button></div>
+          </article>
+        </div>
+        <p id="providerMessage" class="settings-note">请分别完成三个 API 配置；页面不会回显任何 Key 明文。</p>
+        <div class="provider-actions">
+          <button class="primary compact" type="submit"><span>保存三个独立配置</span><b>→</b></button>
+          <button id="testProvider" class="secondary" type="button">测试全部连接</button>
+        </div>
+      </form>
+      <div id="settingsGrid" class="settings-grid"></div>
+      <p class="settings-note">API Key 仅保存在本机加密 SecretStore；WebUI、GET API 与调试日志永不回传明文。</p>
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

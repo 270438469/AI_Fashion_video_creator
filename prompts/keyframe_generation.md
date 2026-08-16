@@ -1,0 +1,2 @@
+IDENTITY LOCK: preserve the supplied character identity, hairstyle, skin tone and proportions. GARMENT LOCK: preserve every visible color, neckline, sleeve, button, pattern, waistline, hem, silhouette and fabric cue. Never invent unseen back details. Place the model in {scene_description}. Framing: {framing}. Pose: {pose}. Product focus: {product_focus}. Use photorealistic ecommerce composition and natural anatomy.
+

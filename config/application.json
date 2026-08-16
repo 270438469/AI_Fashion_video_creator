@@ -1,0 +1,11 @@
+{
+  "default_character": "asian_girl_001",
+  "aspect_ratio": "9:16",
+  "target_duration": 18,
+  "known_view_policy": "front_single_image",
+  "max_body_rotation_deg": 55,
+  "max_image_attempts": 3,
+  "max_video_attempts": 2,
+  "video_resolution": "360x640"
+}
+

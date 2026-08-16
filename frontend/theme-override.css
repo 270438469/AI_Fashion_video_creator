@@ -1,0 +1,8 @@
+.generation-notice {
+  margin: 10px 2px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.generation-notice.ready { color: var(--ok); }

@@ -1,0 +1,145 @@
+{
+  "kuaipao": {
+    "label": "快跑科技",
+    "docs_url": "https://kuaipao.apifox.cn/",
+    "openai_base_url": "https://kuaipao.pro/v1",
+    "api_root": "https://kuaipao.pro",
+    "models": {
+      "vision": [
+        "gpt-5.4",
+        "gpt-5.4-mini",
+        "gpt-5.5",
+        "gpt-5.5-openai-compact",
+        "gpt-5.6-luna",
+        "gpt-5.6-luna-openai-compact",
+        "gpt-5.6-sol",
+        "gpt-5.6-sol-openai-compact",
+        "gpt-5.6-terra",
+        "gpt-5.6-terra-openai-compact"
+      ],
+      "image": [
+        "gpt-image-1.5",
+        "gpt-image-2",
+        "gpt-image-2-1k",
+        "gpt-image-2-2k",
+        "gpt-image-2-4k",
+        "gpt-image-2-4k-超分",
+        "nana-banana-2",
+        "nano-banana-2",
+        "nano-banana-2-1k"
+      ],
+      "video": [
+        "doubao-seedance-2.0-mini-480p",
+        "doubao-seedance-2.0-mini-720p",
+        "doubao-seedance-2.5-480p",
+        "doubao-seedance-2.5-720p",
+        "grok-imagine-video",
+        "grok-imagine-video-1.5-preview",
+        "sora-2",
+        "sora-2-12s",
+        "sora-2-8s",
+        "veo_3_1",
+        "veo_3_1-fast"
+      ]
+    },
+    "model_groups": {
+      "video": [
+        {
+          "id": "seedance",
+          "label": "Seedance",
+          "models": [
+            "doubao-seedance-2.0-mini-480p",
+            "doubao-seedance-2.0-mini-720p",
+            "doubao-seedance-2.5-480p",
+            "doubao-seedance-2.5-720p"
+          ]
+        },
+        {
+          "id": "grok",
+          "label": "Grok Video",
+          "models": [
+            "grok-imagine-video",
+            "grok-imagine-video-1.5-preview"
+          ]
+        },
+        {
+          "id": "sora",
+          "label": "Sora",
+          "models": ["sora-2", "sora-2-12s", "sora-2-8s"]
+        },
+        {
+          "id": "veo",
+          "label": "Veo",
+          "models": ["veo_3_1", "veo_3_1-fast"]
+        }
+      ]
+    },
+    "defaults": {
+      "vision": "gpt-5.6-sol",
+      "image": "gpt-image-2",
+      "video": "doubao-seedance-2.0-mini-720p"
+    },
+    "image": {
+      "protocol": "kuaipao_json_reference",
+      "create_path": "/v1/images/generations"
+    },
+    "video": {
+      "protocol": "kuaipao",
+      "upload_path": "/api/v3/files/uploads",
+      "file_query_path": "/api/v3/files/{file_id}",
+      "create_path": "/v1/videos",
+      "query_path": "/v1/videos/{task_id}",
+      "content_path": "/v1/videos/{task_id}/content"
+    },
+    "connection_test_path": "/v1/models"
+  },
+  "notoken": {
+    "label": "NoToken",
+    "docs_url": "https://notokenpro.apifox.cn/",
+    "openai_base_url": "https://notoken.pro/v1",
+    "api_root": "https://notoken.pro",
+    "capability_providers": {
+      "vision": "kuaipao",
+      "image": "kuaipao",
+      "video": "notoken"
+    },
+    "routing_note": "NoToken 仅负责 Seedance 视频；视觉分析和换装图片默认使用快跑科技 API。",
+    "models": {
+      "video": ["seedance-2.0"]
+    },
+    "defaults": {
+      "video": "seedance-2.0"
+    },
+    "video": {
+      "protocol": "notoken",
+      "upload_path": "/api/v3/files/uploads",
+      "file_query_path": "/api/v3/files/{file_id}",
+      "create_path": "/api/v3/contents/generations/tasks",
+      "query_path": "/api/v3/contents/generations/tasks/{task_id}"
+    },
+    "connection_test_path": "/api/v3/files/__codex_connection_test__"
+  },
+  "openai": {
+    "label": "OpenAI 官方",
+    "docs_url": "https://developers.openai.com/api/docs/",
+    "openai_base_url": "https://api.openai.com/v1",
+    "api_root": "https://api.openai.com",
+    "models": {
+      "vision": ["gpt-5.6-luna", "gpt-5.6-terra", "gpt-5.6-sol"],
+      "image": ["gpt-image-2"],
+      "video": ["sora-2", "sora-2-pro"]
+    },
+    "defaults": {
+      "vision": "gpt-5.6-luna",
+      "image": "gpt-image-2",
+      "video": "sora-2"
+    },
+    "video": {
+      "protocol": "openai",
+      "create_path": "/v1/videos",
+      "query_path": "/v1/videos/{task_id}",
+      "content_path": "/v1/videos/{task_id}/content"
+    },
+    "connection_test_path": "/v1/models"
+  }
+}

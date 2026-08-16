@@ -1,0 +1,4 @@
+{
+  "image": {"identity": 0.90, "garment": 0.88, "anatomy": 0.90, "scene": 0.85, "composition": 0.80},
+  "video": {"identity": 0.65, "garment": 0.80, "motion": 0.78, "anatomy": 0.85, "scene": 0.80}
+}

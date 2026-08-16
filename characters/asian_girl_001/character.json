@@ -1,0 +1,10 @@
+{
+  "id":"asian_girl_001","gender":"female","appearance":"East Asian","visual_age":"22-26","style":"cute sweet feminine","hair":"long straight black hair","skin":"fair natural skin","body":"slim natural proportions","default_shoes":"simple nude heels","identity_lock":true,
+  "source_sheet":"reference_sheet.png",
+  "references":{
+    "identity_face":"identity_face.png",
+    "fullbody_front":"fullbody_front.png",
+    "fullbody_45":"fullbody_45.png",
+    "fullbody_side":"fullbody_side.png"
+  }
+}

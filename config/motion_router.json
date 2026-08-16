@@ -1,0 +1,15 @@
+{
+  "forbidden": ["running","jumping","squatting","full_360_turn","fast_dance","large_head_whip","complex_cross_hand","clothes_on_off","hands_cover_face"],
+  "max_body_rotation_deg": 55,
+  "mappings": {
+    "bodycon_mini_dress": ["M10","M01","M04","M07","M10"],
+    "blazer": ["M10","M01","M06","M05","M10"],
+    "suit": ["M10","M01","M06","M05","M10"],
+    "long_dress": ["M10","M08","M02","M07","M10"],
+    "t_shirt": ["M10","M01","M03","M05","M10"],
+    "jeans": ["M10","M01","M05","M02","M10"],
+    "default": ["M10","M01","M03","M07","M10"]
+  },
+  "scene_lifestyle": {"SC03":"M04","SC04":"M04","SC02":"M03","SC05":"M05","SC07":"M06","SC08":"M03","SC11":"M02"}
+}
+

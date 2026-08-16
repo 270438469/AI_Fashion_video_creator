@@ -1,0 +1,12 @@
+{
+  "aspect_ratio": "9:16",
+  "target_duration": 18,
+  "shots": [
+    {"shot_id":"S01","duration":3,"shot_type":"hero","framing":"full_body","motion_slot":0,"camera_motion":"slow_push_in","keyframe_type":"hero","default_focus":["overall_fit"]},
+    {"shot_id":"S02","duration":4,"shot_type":"walk","framing":"full_body","motion_slot":1,"camera_motion":"tracking_backward","keyframe_type":"walking","default_focus":["silhouette","fabric_motion"]},
+    {"shot_id":"S03","duration":4,"shot_type":"lifestyle","framing":"medium_full","motion_slot":2,"camera_motion":"gentle_static","keyframe_type":"lifestyle","default_focus":["overall_fit"]},
+    {"shot_id":"S04","duration":3,"shot_type":"product_detail","framing":"medium","motion_slot":3,"camera_motion":"slow_push_in","keyframe_type":"detail","default_focus":["neckline","buttons","waistline"]},
+    {"shot_id":"S05","duration":4,"shot_type":"ending","framing":"full_body_45","motion_slot":4,"camera_motion":"slow_push_in","keyframe_type":"ending","default_focus":["overall_fit"]}
+  ]
+}
+
